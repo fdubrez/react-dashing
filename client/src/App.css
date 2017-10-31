@@ -1,0 +1,23 @@
+body {
+  background-color: black;
+}
+
+.widget {
+  padding: 25px 12px;
+  text-align: center;
+  width: 100%;
+  vertical-align: middle;
+  background-color: #9c4274;
+  color: white;
+  margin: 10px;
+}
+
+.widget h1 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.widget h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+}
