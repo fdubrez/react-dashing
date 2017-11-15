@@ -5,19 +5,28 @@ body {
 .widget {
   padding: 25px 12px;
   text-align: center;
-  width: 100%;
+  width: 370px;
+  height: 340px;
   vertical-align: middle;
   background-color: #9c4274;
   color: white;
   margin: 10px;
 }
 
-.widget h1 {
+h1 {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.widget h3 {
-  font-size: 25px;
-  font-weight: 600;
+h2 {
+  text-transform: uppercase;
+  font-size: 76px;
+  font-weight: 700;
+  color: white;
+}
+
+.widget-number .change-rate {
+  text-transform: uppercase;
+  font-size: 76px;
+  font-weight: 700;
   color: white;
 }

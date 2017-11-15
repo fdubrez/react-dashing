@@ -1,41 +1,47 @@
 import React, { Component } from 'react';
 import './App.css';
 import Dashboard from './components/Dashboard'
-import Widget from './components/Widget'
+import NumberWidget from './components/NumberWidget'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: []
+      data: {}
     }
+    this.onReceiveEvent = this.onReceiveEvent.bind(this)
+  }
+  onReceiveEvent (e) {
+    console.log("Receive ", e.data)
+    const json = JSON.parse(e.data)
+    let last
+    if (this.state.data.hasOwnProperty(json.id) && this.state.data.current) {
+      last = this.state.data.current
+    }
+    let data = {
+      ...this.state.data
+    }
+
+    data[json.id] = {
+      current: json.current,
+      last
+    }
+    this.setState({
+      data
+    })  
   }
   componentDidMount() {
     const source = new EventSource("http://localhost:9090/events/")
     source.onmessage = e => {
-      console.log(e.data)
-      this.setState({
-        data: [
-          ...this.state.data,
-          e.data
-        ]
-      })
+      this.onReceiveEvent(e)
     }
   }
   render() {
-    const items = this.state.data.map((d, index) => <li key={index}>{d}</li>) 
     return (
       <div className="App">
         <Dashboard>
-          <Widget title='Un bien beau widget'>
-            <h3>1000K</h3>
-            </Widget>
-          <Widget title='Un bien beau widget'/>
-          <Widget title='Un bien beau widget'/>
+          <NumberWidget title='Vélos disponibles' data={this.state.data} id='bicycle-availables-champslibres' moreInfo="Station champs libres"/>
         </Dashboard>
-        <ul>
-          {items}
-        </ul>
       </div>
     );
   }

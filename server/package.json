@@ -10,6 +10,8 @@
   "author": "fdubrez",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "node-fetch": "^1.7.3",
+    "node-schedule": "^1.2.5"
   }
 }
